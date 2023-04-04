@@ -16,23 +16,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.insurance.insurance.entity.Applicant;
+import com.insurance.insurance.service.AdminService;
 import com.insurance.insurance.service.ApplicantService;
 
 @CrossOrigin
+@RequestMapping("/admin")
 @RestController
-@RequestMapping("/applicant")
-public class ApplicantController {
+public class AdminController {
     
+    // @Autowired
+    // private AdminService adminService;
+
     @Autowired
     private ApplicantService applicantService;
 
-    @PostMapping("/apply")
-    public Applicant addUser(@RequestBody Applicant user){
+    @GetMapping("/users")
+    public List<Applicant> getAllUsers() {
+        return applicantService.getAllUsers();
+    }
+
+    @GetMapping("/users/{id}")
+    public Applicant getUser(@PathVariable long id) {
+        return applicantService.getUser(id);
+    }
+
+    @PostMapping("/user")
+    public Applicant addUser(@RequestBody Applicant user) {
         return applicantService.addUser(user);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable long id, @RequestBody Applicant user){
-        return new ResponseEntity<>("updated!",HttpStatus.OK);
+    @PutMapping("/user/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable long id, @RequestBody Applicant user) {
+        return new ResponseEntity<>("updated!", HttpStatus.OK);
     }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable long id) {
+        return new ResponseEntity<>("deleted!", HttpStatus.OK);
+    }
+
 }
