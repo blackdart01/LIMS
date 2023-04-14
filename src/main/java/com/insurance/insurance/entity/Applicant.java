@@ -33,8 +33,12 @@ public class Applicant {
 
     private long pinCode;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
+
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate dateOfPurchase;
 
     private String gender;
 
@@ -60,6 +64,16 @@ public class Applicant {
 
     private boolean hasHistoryOfMentalIllness;
 
-    // @OneToOne(mappedBy = "user")
-    // private Policy policy;
+    private long annualPremium;
+
+    private long monthlyPremium;
+
+    private int packageVarient;
+
+    private int checkStatus;
+
+    private long coverage;
+
+    private long maturityAge;
+
 }

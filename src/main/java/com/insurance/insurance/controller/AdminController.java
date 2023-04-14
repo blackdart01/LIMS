@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.insurance.insurance.entity.Applicant;
-import com.insurance.insurance.service.AdminService;
 import com.insurance.insurance.service.ApplicantService;
 
 @CrossOrigin
@@ -24,9 +23,6 @@ import com.insurance.insurance.service.ApplicantService;
 @RestController
 public class AdminController {
     
-    // @Autowired
-    // private AdminService adminService;
-
     @Autowired
     private ApplicantService applicantService;
 
@@ -51,8 +47,8 @@ public class AdminController {
     }
 
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable long id) {
-        return new ResponseEntity<>("deleted!", HttpStatus.OK);
+    public void deleteUser(@PathVariable long id) {
+        applicantService.deleteUser(id);
     }
 
 }
